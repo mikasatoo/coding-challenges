@@ -13,4 +13,4 @@ function containsDuplicate(nums: number[]): boolean {
     return result;
 };
 
-console.log('result', containsDuplicate([1,2,3,1]))
+console.log('result', containsDuplicate([1,2,3,1]));
