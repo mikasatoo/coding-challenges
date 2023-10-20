@@ -33,3 +33,5 @@ function groupAnagrams(strs: string[]): string[][] {
 
     return result;
 };
+
+console.log('result: ', groupAnagrams(["eat","tea","tan","ate","nat","bat"]));
