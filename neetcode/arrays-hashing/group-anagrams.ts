@@ -30,7 +30,7 @@ function groupAnagrams(strs: string[]): string[][] {
 
     // Group the originalStrs for each anagram together
     result = Object.values(anagramStrs);
-
+    
     return result;
 };
 
