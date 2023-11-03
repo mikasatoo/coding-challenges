@@ -1,25 +1,41 @@
 function longestConsecutive(nums: number[]): number {
-    let result: number = 1;
-
-    // Sort nums in ascending order
-    nums.sort((a, b) => a - b);
-    console.log(nums);
-
-    // Loop through nums to check if the next num is consecutive
-    for (let i = 1; i < nums.length; i++) {
-        const currentNum: number = nums[i];
-        const prevNum: number = nums[i - 1];
-        
-        if (currentNum == prevNum) {
-            continue;
-        } else if (currentNum == prevNum + 1) {
-            result += 1;
-        } else {
-            return result;
-        }
+    let result: number;
+    // Check if nums is empty
+    if (nums.length == 0) {
+        result = 0;
+        return result;
+    } else {
+        result = 1;
     }
 
+    // Create an array to store each sequence length
+    const seqLengths: number[] = [];
+
+    // Create a set (to hold only unique values)
+    const numsSet: Set<number> = new Set(nums);
+
+    // Find min num in numsSet to use as the starting point
+    const minNum: number = Math.min(...numsSet);
+    
+    // Check if each consecutive num exists in numsSet
+    let currentNum: number = minNum;
+    let currentSeqLength: number = 1;
+    for (let i = 1; i < numsSet.size; i++) {
+        if (!numsSet.has(currentNum)) {
+            continue;
+        } else if (numsSet.has(currentNum + 1)) {
+            currentSeqLength += 1;
+        } else {
+            seqLengths.push(currentSeqLength);
+            currentSeqLength = 1;
+        }
+        currentNum += 1;
+    }
+    seqLengths.push(currentSeqLength);
+
+    // Set result as the max value in seqLengths
+    result = Math.max(...seqLengths);
     return result;
 };
 
-console.log('result', longestConsecutive([0,3,7,2,5,8,4,6,0,1]));
+console.log('result', longestConsecutive([9,1,4,7,3,-1,0,5,8,-1,6]));
